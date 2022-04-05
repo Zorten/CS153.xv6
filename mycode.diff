@@ -1,0 +1,25 @@
+diff --git a/Makefile b/Makefile
+index 09d790c..3694990 100644
+--- a/Makefile
++++ b/Makefile
+@@ -181,6 +181,8 @@ UPROGS=\
+ 	_usertests\
+ 	_wc\
+ 	_zombie\
++	_hello\
++	_bug\
+ 
+ fs.img: mkfs README $(UPROGS)
+ 	./mkfs fs.img README $(UPROGS)
+diff --git a/sysproc.c b/sysproc.c
+index 0686d29..04e057e 100644
+--- a/sysproc.c
++++ b/sysproc.c
+@@ -16,6 +16,7 @@ sys_fork(void)
+ int
+ sys_exit(void)
+ {
++  //int status;
+   exit();
+   return 0;  // not reached
+ }
