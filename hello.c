@@ -8,5 +8,5 @@ main (int argc, char **argv)
     printf(1, "hi there breakpoint\n");
     return 0;
     //change
-    //exit();
+    //exit(0);
 }

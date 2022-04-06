@@ -7,5 +7,5 @@ int main(int argc, char* argv[]){
     printf(1, "checkpoint 2\n");
     printf(1, "%d\n", val);
     printf(1, "checkpoint 3\n");
-    exit();
+    exit(0);
 }
