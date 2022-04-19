@@ -324,14 +324,17 @@ waitpid(int pid, int *status, int options)
 {
   struct proc *p;
   int pid2;
+  int haveFound;
   struct proc *curproc = myproc();
   
   acquire(&ptable.lock);
   for(;;){
     // Scan through table looking for exited processes matching pid.
+    haveFound = 0;
     for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
       if(p->pid != pid)
         continue;
+      haveFound = 1;
       if(p->state == ZOMBIE){
         // Found one.
         if (status != 0){
@@ -352,7 +355,7 @@ waitpid(int pid, int *status, int options)
     }
 
     // No point waiting if process dead alrady.
-    if(curproc->killed){
+    if(!haveFound || curproc->killed){
       release(&ptable.lock);
       return -1;
     }
