@@ -221,7 +221,7 @@ fork(void)
   return pid;
 }
 
-// Exit the current process.  Does not return.
+// Exit the current process and save its status.  Does not return.
 // An exited process remains in the zombie state
 // until its parent calls wait() to find out it exited.
 void
@@ -268,7 +268,7 @@ exit(int status)
   panic("zombie exit");
 }
 
-// Wait for a child process to exit and return its pid.
+// Wait for a child process to exit and return the terminated child exit status.
 // Return -1 if this process has no children.
 int
 wait(int *status)
